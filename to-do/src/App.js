@@ -30,13 +30,6 @@ class ClassInput extends Component {
     }));
   }
 
-  handleDelete(e) {
-    this.setState({
-      todos: this.state.todos.filter(function (event, i) {
-        return i !== e;
-      })
-    });
-  }
 
   render() {
     return (
@@ -57,7 +50,7 @@ class ClassInput extends Component {
           {this.state.todos.map((todo) => (
             <>
             <li key={todo}>{todo}</li>
-            <button onClick={this.handleDelete}>delete</button>
+            <button>delete</button>
             </>
           ))}
         </ul>
