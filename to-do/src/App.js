@@ -8,7 +8,7 @@ class ClassInput extends Component {
     this.state = {
       count: 0,
       todos: [
-        {description: 'Do the dishes', isCompleted: false},
+        {description: 'Do the dishes', isCompleted: false, count: this.count + 1},
         {description: 'Code for 4 hours', isCompleted: false},
         {description: 'Go to the library', isCompleted: false},
         {description: 'Make the bed', isCompleted: false}
