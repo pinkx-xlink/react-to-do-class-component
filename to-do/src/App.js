@@ -12,6 +12,7 @@ class ClassInput extends Component {
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleInputChange(e) {
@@ -27,6 +28,14 @@ class ClassInput extends Component {
       todos: state.todos.concat(state.inputVal),
       inputVal: "",
     }));
+  }
+
+  handleDelete(e) {
+    this.setState({
+      todos: this.state.todos.filter(function (event, i) {
+        return i !== e;
+      })
+    });
   }
 
   render() {
@@ -46,7 +55,10 @@ class ClassInput extends Component {
         <h4>All the tasks!</h4>
         <ul>
           {this.state.todos.map((todo) => (
+            <>
             <li key={todo}>{todo}</li>
+            <button onClick={this.handleDelete}>delete</button>
+            </>
           ))}
         </ul>
       </section>
