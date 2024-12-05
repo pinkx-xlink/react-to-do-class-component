@@ -4,7 +4,6 @@ import ToDo from "./todo";
 class ClassInput extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       todos: [
         {description: 'Do the dishes', isCompleted: false},
@@ -14,14 +13,13 @@ class ClassInput extends Component {
       ],
       newTodoDescription: ''
     };
-
     // this.handleInputChange = this.handleInputChange.bind(this);
     // this.handleSubmit = this.handleSubmit.bind(this);
     // this.handleDelete = this.handleDelete.bind(this);
   }
 
-  handleInputChange(e) {
-    this.setState({ newTodo: e.target.value })
+  handleChange(e) {
+    this.setState({ newTodoDescription: e.target.value });
     // this.setState((state) => ({
     //   ...state,
     //   inputVal: e.target.value,
@@ -40,7 +38,6 @@ class ClassInput extends Component {
     todo.isCompleted = todo.isCompleted ? false : true;
     this.setState({ todos: todos })
   }
-  }
 
   deleteToDo(index) {
     console.log('deleteToDo executed!')
@@ -51,28 +48,16 @@ class ClassInput extends Component {
 
   render() {
     return (
-      <section>
-        <h3>{this.props.name}</h3>
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="task-entry">Enter a task: </label>
-          <input
-            type="text"
-            name="task-entry"
-            value={this.state.inputVal}
-            onChange={this.handleInputChange}
-          />
-          <button type="submit">Submit</button>
-        </form>
-        <h4>All the tasks!</h4>
-        <ul>
-          {this.state.todos.map((todo, index) => (
-            <ToDo key={ index } description={ todo.description } deleteToDo={ () => this.deleteToDo(index) }>
-            <li key={todo}>{todo}</li>
-            <button onClick={this.props.deleteToDo}>delete</button>
-            </>
-          ))}
-        </ul>
-      </section>
+      <div className="App">
+      <ul>
+        { this.state.todos.map( (todo, index) =>
+        <ToDo key={ index } description={ todo.description } isCompleted={ todo.isCompleted } toggleComplete={ () => this.toggleComplete(index) } deleteToDo={ () => this.deleteToDo(index) } /> )}
+      </ul>
+      <form onSubmit={ (e) => this.handleSubmit(e) }>
+        <input type="text"  value={ this.state.newTodoDescription } onChange={ (e) => this.handleChange(e) }/>
+        <input type="submit" />
+      </form>
+      </div>
     );
   }
 }
