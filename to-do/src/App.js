@@ -6,7 +6,12 @@ class ClassInput extends Component {
     super(props);
 
     this.state = {
-      todos: [],
+      todos: [
+        {description: 'Do the dishes', isCompleted: false},
+        {description: 'Code for 4 hours', isCompleted: false},
+        {description: 'Go to the library', isCompleted: false},
+        {description: 'Make the bed', isCompleted: false}
+      ],
       inputVal: "",
     };
 
@@ -30,6 +35,12 @@ class ClassInput extends Component {
     }));
   }
 
+  deleteToDo(index) {
+    console.log('deleteToDo executed!')
+    const todos = this.state.todos.filter( (todo => todo !== this.state.todos[index]))
+    this.setState({ todos: todos });
+    //This is now setting the state of the old list of todos to the new list of todos without the recently deleted one
+  };
 
   render() {
     return (
@@ -47,10 +58,10 @@ class ClassInput extends Component {
         </form>
         <h4>All the tasks!</h4>
         <ul>
-          {this.state.todos.map((todo) => (
-            <>
+          {this.state.todos.map((todo, index) => (
+            <ToDo key={ index } description={ todo.description } deleteToDo={ () => this.deleteToDo(index) }>
             <li key={todo}>{todo}</li>
-            <button>delete</button>
+            <button onClick={this.props.deleteToDo}>delete</button>
             </>
           ))}
         </ul>
