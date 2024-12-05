@@ -68,15 +68,20 @@ class ClassInput extends Component {
   render() {
     return (
       <div className="App">
+        {this.state.editing === false ? (
+
+        ) : (
+
+        )}
       <ul>
         
-        { this.state.todos.map( (todo, index) =>
+        {/* { this.state.todos.map( (todo, index) =>
         <ToDo key={ index }description={ todo.description } isCompleted={ todo.isCompleted } toggleComplete={ () => this.toggleComplete(index) } deleteToDo={ () => this.deleteToDo(index) } /> )}
       </ul>
       <form onSubmit={ (e) => this.handleSubmit(e) }>
         <input type="text"  value={ this.state.newTodoDescription } onChange={ (e) => this.handleChange(e) }/>
         <input type="submit" />
-      </form> 
+      </form>  */}
       
       </div>
       
