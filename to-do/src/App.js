@@ -7,6 +7,10 @@ class ClassInput extends Component {
     super(props);
     this.state = {
       count: 0,
+      value: "",
+      editing: false,
+      currentid: "",
+      currentValue: "",
       todos: [
         {description: 'Do the dishes', isCompleted: false, count: this.count + 1},
         {description: 'Code for 4 hours', isCompleted: false},
@@ -58,14 +62,17 @@ class ClassInput extends Component {
     return (
       <div className="App">
       <ul>
+        
         { this.state.todos.map( (todo, index) =>
         <ToDo key={ index }description={ todo.description } isCompleted={ todo.isCompleted } toggleComplete={ () => this.toggleComplete(index) } deleteToDo={ () => this.deleteToDo(index) } /> )}
       </ul>
       <form onSubmit={ (e) => this.handleSubmit(e) }>
         <input type="text"  value={ this.state.newTodoDescription } onChange={ (e) => this.handleChange(e) }/>
         <input type="submit" />
-      </form>
+      </form> 
+      
       </div>
+      
     );
   }
 }
