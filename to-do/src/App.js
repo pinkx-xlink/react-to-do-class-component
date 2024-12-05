@@ -12,27 +12,34 @@ class ClassInput extends Component {
         {description: 'Go to the library', isCompleted: false},
         {description: 'Make the bed', isCompleted: false}
       ],
-      inputVal: "",
+      newTodoDescription: ''
     };
 
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleInputChange = this.handleInputChange.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
     // this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleInputChange(e) {
-    this.setState((state) => ({
-      ...state,
-      inputVal: e.target.value,
-    }));
+    this.setState({ newTodo: e.target.value })
+    // this.setState((state) => ({
+    //   ...state,
+    //   inputVal: e.target.value,
+    // }));
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.setState((state) => ({
-      todos: state.todos.concat(state.inputVal),
-      inputVal: "",
-    }));
+    if (!this.state.newTodoDescription) { return }
+    const newTodo = { description: this.state.newTodoDescription, isCompleted: false };
+   this.setState({ todos: [...this.state.todos, newTodo], newTodoDescription: '' });
+  }
+  toggleComplete(index) {
+    const todos = this.state.todos.slice();
+    const todo = todos[index];
+    todo.isCompleted = todo.isCompleted ? false : true;
+    this.setState({ todos: todos })
+  }
   }
 
   deleteToDo(index) {
