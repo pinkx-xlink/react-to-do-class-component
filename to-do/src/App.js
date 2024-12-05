@@ -51,6 +51,13 @@ class ClassInput extends Component {
     this.setState({ todos: todos });
     //This is now setting the state of the old list of todos to the new list of todos without the recently deleted one
   };
+  onEditTodo = (id, newValue) => {
+    this.state.todos.map((todo) => {
+      if (todo.id === id) {
+        todo.name = newValue;
+      }
+    });
+  };
   // countTodos(todos) {
   //   console.log(`Counting todos...`)
   //   const countThem = this.setState({count: this.state.count + 1})
