@@ -5,6 +5,7 @@ class ClassInput extends Component {
   constructor() {
     super();
     this.state = {
+      count: 0,
       value: "",
       editing: false,
       currentid: "",
@@ -51,6 +52,7 @@ class ClassInput extends Component {
     if (this.state.value !== "") {
       this.setState({ todos: this.state.todos.concat(obj) });
       this.setState({ value: "" });
+      this.setState({ count: this.state.count + 1});
     }
   };
 
@@ -132,6 +134,7 @@ class ClassInput extends Component {
           <button onClick={this.onSubmitEditTodo}>Update Todo</button>
           </form>
         )}
+        <p>To-Do Count: {this.state.count}</p>
         <ul>{mylist}</ul>
         
 
