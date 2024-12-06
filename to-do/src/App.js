@@ -2,11 +2,10 @@ import { Component, useState } from "react";
 import './App.css';
 import ToDo from "./todo";
 class ClassInput extends Component {
-  constructor(props) {
+  constructor() {
 
-    super(props);
+    super();
     this.state = {
-      count: 0,
       value: "",
       editing: false,
       currentid: "",
@@ -54,8 +53,7 @@ class ClassInput extends Component {
       this.setState({ todos: this.state.todos.concat(obj) });
       this.setState({ value: "" });
     }
-  }
-
+  };
 
   toggleComplete(index) {
     const todos = this.state.todos.slice();
@@ -86,11 +84,15 @@ class ClassInput extends Component {
     e.preventDefault();
     this.onEditTodo(this.state.currentid, this.state.currentValue);
     this.setState({ editing: false });
-  }
+  };
+
   onToggleEdit = (todo) => {
     this.setState({ editing: true });
     this.setState({ currentid: todo.id });
     this.setState({ currentValue: todo.name });
+  };
+  onEditInputChange = (e) => {
+    this.setState({ currentValue: e.target.value })
   };
   // countTodos(todos) {
   //   console.log(`Counting todos...`)
@@ -100,33 +102,38 @@ class ClassInput extends Component {
   // }
 
   render() {
-    const mylist = this.state.todos.map((todo) => {
+    const mylist = this.state.todos.map((todo) => (
       <li className="todo_item">
         {todo.name}
 
         <button onClick={() => this.onToggleEdit(todo)}>Edit</button>
         <button onClick={() => this.deleteToDo(todo.id)}>Remove</button>
       </li>
-    });
+    ));
 
     return (
       <>
       <div className="App">
         {this.state.editing === false ? (
-          <form onSubmit={ (e) => this.handleSubmit }>
+          <form onSubmit={this.onAddTask}>
           <input type="text"  
-          value={ this.state.newTodoDescription } 
-          onChange={ (e) => this.handleChange(e) }/>
-          <input type="submit" />
+          placeholder="type task" 
+          value={this.state.value}
+          onChange={this.onChange}/>
+          <button onClick={this.onAddTask}>Add Todo</button>
         </form>
         ) : (
-<form onSubmit={ (e) => this.onSubmitEditTodo}>
-          <input type="text"  
-          value={ this.state.newTodoDescription } 
-          onChange={ (e) => this.handleChange(e) }/>
-          <input type="submit" />
+<form onSubmit={this.onSubmitEditTodo}>
+          <input
+            placeholder="Edit todo"
+            value={this.state.currentValue}
+            name={this.state.currentValue}
+            onChange={this.onEditInputChange} 
+          />
+          <button onClick={this.onSubmitEditTodo}>Update Todo</button>
           </form>
         )}
+        <ul>{mylist}</ul>
         
 
         {/* {this.state.editing === false ? (
@@ -149,7 +156,7 @@ class ClassInput extends Component {
         )}
 
         <ul className="todo_wrapper">todosss</ul> */}
-<ul>todos</ul>
+
 {/* 
       <ul>
          { this.state.todos.map( (todo, index) =>
