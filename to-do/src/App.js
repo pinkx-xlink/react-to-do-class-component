@@ -3,7 +3,6 @@ import './App.css';
 import ToDo from "./todo";
 class ClassInput extends Component {
   constructor() {
-
     super();
     this.state = {
       value: "",
@@ -11,10 +10,10 @@ class ClassInput extends Component {
       currentid: "",
       currentValue: "",
       todos: [
-        {description: 'Do the dishes', isCompleted: false, count: this.count + 1},
-        {description: 'Code for 4 hours', isCompleted: false},
-        {description: 'Go to the library', isCompleted: false},
-        {description: 'Make the bed', isCompleted: false}
+        // {description: 'Do the dishes', isCompleted: false, count: this.count + 1},
+        // {description: 'Code for 4 hours', isCompleted: false},
+        // {description: 'Go to the library', isCompleted: false},
+        // {description: 'Make the bed', isCompleted: false}
       ],
       // length: this.todos.length,
       newTodoDescription: ''
