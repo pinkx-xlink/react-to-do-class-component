@@ -72,16 +72,30 @@ class ClassInput extends Component {
   // }
 
   render() {
+    const mylist = this.state.todos.map((todo) => {
+      <li className="todo_item">
+        {todo.name}
+
+        <button onClick={() => this.onToggleEdit(todo)}>Edit</button>
+        <button onClick={() => this.deleteToDo(todo.id)}>Remove</button>
+      </li>
+    });
+
     return (
+      <>
       <div className="App">
         {this.state.editing === false ? (
           <form onSubmit={ (e) => this.handleSubmit }>
-          <input type="text"  value={ this.state.newTodoDescription } onChange={ (e) => this.handleChange(e) }/>
+          <input type="text"  
+          value={ this.state.newTodoDescription } 
+          onChange={ (e) => this.handleChange(e) }/>
           <input type="submit" />
         </form>
         ) : (
 <form onSubmit={ (e) => this.onSubmitEditTodo}>
-          <input type="text"  value={ this.state.newTodoDescription } onChange={ (e) => this.handleChange(e) }/>
+          <input type="text"  
+          value={ this.state.newTodoDescription } 
+          onChange={ (e) => this.handleChange(e) }/>
           <input type="submit" />
           </form>
         )}
@@ -116,7 +130,7 @@ class ClassInput extends Component {
         
        
       </div>
-      
+      </>
     );
   }
 }
