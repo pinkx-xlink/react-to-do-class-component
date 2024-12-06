@@ -64,6 +64,11 @@ class ClassInput extends Component {
     this.onEditTodo(this.state.currentid, this.state.currentValue);
     this.setState({ editing: false });
   }
+  onToggleEdit = (todo) => {
+    this.setState({ editing: true });
+    this.setState({ currentid: todo.id });
+    this.setState({ currentValue: todo.name });
+  };
   // countTodos(todos) {
   //   console.log(`Counting todos...`)
   //   const countThem = this.setState({count: this.state.count + 1})
