@@ -33,24 +33,47 @@ class ClassInput extends Component {
     // }));
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    if (!this.state.newTodoDescription) { return }
-    const newTodo = { description: this.state.newTodoDescription, isCompleted: false };
-   this.setState({ todos: [...this.state.todos, newTodo], newTodoDescription: '' });
+  // was used to submit todo item
+  // handleSubmit(e) {
+  //   e.preventDefault();
+  //   if (!this.state.newTodoDescription) { return }
+  //   const newTodo = { description: this.state.newTodoDescription, isCompleted: false };
+  //  this.setState({ todos: [...this.state.todos, newTodo], newTodoDescription: '' });
+  // }
+
+  onChange = (e) => {
+    this.setState({ value: e.target.value });
   }
+  onAddTask = (e) => {
+    e.preventDefault();
+    const obj = {
+      name: this.state.value,
+      id: Date.now(),
+    };
+    if (this.state.value !== "") {
+      this.setState({ todos: this.state.todos.concat(obj) });
+      this.setState({ value: "" });
+    }
+  }
+
+
   toggleComplete(index) {
     const todos = this.state.todos.slice();
     const todo = todos[index];
     todo.isCompleted = todo.isCompleted ? false : true;
     this.setState({ todos: todos })
   }
-  deleteToDo(index) {
-    console.log('deleteToDo executed!')
-    const todos = this.state.todos.filter( (todo => todo !== this.state.todos[index]))
-    this.setState({ todos: todos });
-    //This is now setting the state of the old list of todos to the new list of todos without the recently deleted one
+  onDeleteTask = (itemId) => {
+    this.setState({
+      todos: [...this.state.todos].filter((id) => id.id !== itemId),
+    });
   };
+  // deleteToDo(index) {
+  //   console.log('deleteToDo executed!')
+  //   const todos = this.state.todos.filter( (todo => todo !== this.state.todos[index]))
+  //   this.setState({ todos: todos });
+  //   //This is now setting the state of the old list of todos to the new list of todos without the recently deleted one
+  // };
   onEditTodo = (id, newValue) => {
     this.state.todos.map((todo) => {
       if (todo.id === id) {
