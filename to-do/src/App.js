@@ -68,21 +68,37 @@ class ClassInput extends Component {
   render() {
     return (
       <div className="App">
-        {this.state.editing === false ? (
-
+        {/* {this.state.editing === false ? (
+          <form onSubmit={this.handleSubmit}>
+            <input 
+              placeholder="type task"
+              value={this.state.value}
+              onChange={this.handleChange}
+            />
+          </form>
         ) : (
-
+          <form onSubmit={this.onSubmitEditTodo}>
+            <input 
+              placeholder="edit task"
+              name={this.state.currentValue}
+              onChange={this.onEditInputChange}
+            />
+            <button onClick={this.onSubmitEditTodo}>Update Item</button>
+          </form>
         )}
+
+        <ul className="todo_wrapper">todosss</ul> */}
+
+
       <ul>
-        
-        {/* { this.state.todos.map( (todo, index) =>
+         { this.state.todos.map( (todo, index) =>
         <ToDo key={ index }description={ todo.description } isCompleted={ todo.isCompleted } toggleComplete={ () => this.toggleComplete(index) } deleteToDo={ () => this.deleteToDo(index) } /> )}
       </ul>
       <form onSubmit={ (e) => this.handleSubmit(e) }>
         <input type="text"  value={ this.state.newTodoDescription } onChange={ (e) => this.handleChange(e) }/>
         <input type="submit" />
-      </form>  */}
-      
+      </form>  
+       
       </div>
       
     );
