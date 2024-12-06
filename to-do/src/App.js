@@ -58,6 +58,12 @@ class ClassInput extends Component {
       }
     });
   };
+
+  onSubmitEditTodo = (e) => {
+    e.preventDefault();
+    this.onEditTodo(this.state.currentid, this.state.currentValue);
+    this.setState({ editing: false });
+  }
   // countTodos(todos) {
   //   console.log(`Counting todos...`)
   //   const countThem = this.setState({count: this.state.count + 1})
@@ -68,6 +74,19 @@ class ClassInput extends Component {
   render() {
     return (
       <div className="App">
+        {this.state.editing === false ? (
+          <form onSubmit={ (e) => this.handleSubmit }>
+          <input type="text"  value={ this.state.newTodoDescription } onChange={ (e) => this.handleChange(e) }/>
+          <input type="submit" />
+        </form>
+        ) : (
+<form onSubmit={ (e) => this.onSubmitEditTodo}>
+          <input type="text"  value={ this.state.newTodoDescription } onChange={ (e) => this.handleChange(e) }/>
+          <input type="submit" />
+          </form>
+        )}
+        
+
         {/* {this.state.editing === false ? (
           <form onSubmit={this.handleSubmit}>
             <input 
@@ -88,16 +107,13 @@ class ClassInput extends Component {
         )}
 
         <ul className="todo_wrapper">todosss</ul> */}
-
-
+<ul>todos</ul>
+{/* 
       <ul>
          { this.state.todos.map( (todo, index) =>
         <ToDo key={ index }description={ todo.description } isCompleted={ todo.isCompleted } toggleComplete={ () => this.toggleComplete(index) } deleteToDo={ () => this.deleteToDo(index) } /> )}
-      </ul>
-      <form onSubmit={ (e) => this.handleSubmit(e) }>
-        <input type="text"  value={ this.state.newTodoDescription } onChange={ (e) => this.handleChange(e) }/>
-        <input type="submit" />
-      </form>  
+      </ul> */}
+        
        
       </div>
       
